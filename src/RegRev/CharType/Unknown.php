@@ -27,9 +27,9 @@ class Unknown extends CharType
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
-    public function isValid()
+    public function isValid($string)
     {
         return true;
     }

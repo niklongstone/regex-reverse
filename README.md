@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Regex reverse
 
 [![Latest Version](https://img.shields.io/github/release/niklongstone/regex-reverse.svg?style=flat-square)](https://github.com/niklongstone/regex-reverse/releases)
@@ -48,6 +47,3 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-=======
->>>>>>> e8e71c6... first commit
-# regex-reverse
