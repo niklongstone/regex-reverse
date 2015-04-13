@@ -10,11 +10,7 @@
 
 namespace RegRev;
 
-use RegRev\CharType\Alnum;
-use RegRev\CharType\Alpha;
-use RegRev\CharType\Blank;
-use RegRev\CharType\Digit;
-use RegRev\CharType\Unknown;
+use RegRev\CharType;
 
 /**
  * Class RevReg
@@ -53,23 +49,29 @@ class RegRev
     {
         self::$expressions = new ExpressionContainer();
 
-        $charType = new Digit();
+        $charType = new CharType\Digit();
         $charType->setChar('\d');
         self::$expressions->set($charType);
 
-        $charType = new Alpha();
+        $charType = new CharType\Alpha();
         $charType->setChar('\D');
         self::$expressions->set($charType);
 
-        $charType = new Blank();
+        $charType = new CharType\Blank();
         $charType->setChar('\h');
         $charType->setChar('\s');
         self::$expressions->set($charType);
 
-        $charType = new Alnum();
+        $charType = new CharType\Alnum();
         $charType->setChar('\w');
+        $charType->setChar('\S');
+        self::$expressions->set($charType);
 
-        $charType = new Unknown();
+        $charType = new CharType\NonAlnum();
+        $charType->setChar('\W');
+        self::$expressions->set($charType);
+
+        $charType = new CharType\Unknown();
         self::$expressions->set($charType);
     }
 

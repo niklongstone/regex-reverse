@@ -28,13 +28,14 @@ echo RegRev::generate('\d'); //ouput a random number
 
 ## Supported expressions
 
-| Expression | Description | Result              |
-|------------|-------------|---------------------|
-|    \d      |    digit    |      a number       |
-|    \D      |  non digit  |    an alpha char    |
-|    \w      |    word     | a alphanumeric char |
-|    \s      |    space    |    a blank space    |
-
+| Expression | Description | Result                  |
+|------------|-------------|-------------------------|
+|    \d      |    digit    |      a number           |
+|    \D      |  non digit  |    an alpha char        |
+|    \w      |    word     | a alphanumeric char     |
+|    \W      |    word     | a non alphanumeric char |
+|    \s      |    space    |    a blank space        |
+|    \S      |    space    |    a non blank space    |
 
 ## Contributing
 
