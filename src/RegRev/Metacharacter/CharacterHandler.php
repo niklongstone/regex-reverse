@@ -48,6 +48,11 @@ abstract class CharacterHandler
         return get_class($this);
     }
 
+    /**
+     * Sets a string that identify the regular expression.
+     *
+     * @param string $char
+     */
     public function setChar($char)
     {
         array_push($this->chars, $char);
@@ -85,4 +90,21 @@ abstract class CharacterHandler
      * @return string
      */
     abstract public function generate();
+
+    /**
+     * @param CharacterHandler $handler
+     */
+    final public function setSuccessor(CharacterHandler $handler)
+    {
+        $this->successor = $handler;
+        $this->successor->setPreiovus($this);
+    }
+
+    /**
+     * @param CharacterHandler $handler
+     */
+    final public function setPrevious(CharacterHandler $handler)
+    {
+        $this->previous = $handler;
+    }
 }
