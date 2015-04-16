@@ -8,24 +8,22 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Metacharacter\CharType;
 
-use RegRev\CharType\NonAlnum;
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class NonAlnumTest extends \PHPUnit_Framework_TestCase
+class Digit extends CharacterHandler
 {
-    public function setup()
+    /**
+     * {@inheritdoc}
+     */
+    public function generate()
     {
-        $this->nonAlnum = new NonAlnum();
-    }
-
-    public function testGenerate()
-    {
-        $this->assertFalse(ctype_alnum($this->nonAlnum->generate()));
+        return rand(0, 9);
     }
 }

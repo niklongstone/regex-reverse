@@ -8,20 +8,25 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\CharType;
+
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class Digit extends CharType
+class Alnum extends CharacterHandler
 {
     /**
      * {@inheritdoc}
      */
     public function generate()
     {
-        return rand(0, 9);
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomIndex = rand(0, strlen($characters));
+
+        return $characters[$randomIndex];
     }
 }

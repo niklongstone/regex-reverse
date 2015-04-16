@@ -8,7 +8,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\CharType;
+
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
  * Class Unknown,
@@ -16,7 +18,7 @@ namespace RegRev\CharType;
  *
  * @package RevReg\Char
  */
-class Unknown extends CharType
+class Unknown extends CharacterHandler
 {
     /**
      * {@inheritdoc}

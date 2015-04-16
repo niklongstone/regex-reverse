@@ -8,14 +8,14 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\GroupType;
 
 /**
  * Class CharType
  *
  * @package RegRev\CharType
  */
-abstract class CharType
+class Subpattern extends CharacterHandler
 {
     private $chars = array();
     private $match;
@@ -30,7 +30,7 @@ abstract class CharType
         foreach ($this->chars as $char) {
             if (strpos($string, $char) === 0) {
                 $this->match = $char;
-
+            //\(.*\)$
                 return true;
             }
         }
@@ -39,40 +39,10 @@ abstract class CharType
     }
 
     /**
-     * Gets a description of a meta char
-     *
      * @return string
      */
-    public function getName()
+    public function generate()
     {
-        return get_class($this);
+        return true;
     }
-
-    public function setChar($char)
-    {
-        array_push($this->chars, $char);
-    }
-
-    /**
-     * Gets a the meta char
-     *
-     * @return string
-     */
-    public function getChars()
-    {
-        return $this->chars;
-    }
-
-    /**
-     * @return string mixed
-     */
-    public function getMatch()
-    {
-        return $this->match;
-    }
-
-    /**
-     * @return string
-     */
-    abstract public function generate();
 }

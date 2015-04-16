@@ -8,9 +8,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\CharType\Alnum;
+use RegRev\Metacharacter\CharType\Alnum;
 
 /**
  * Class Number

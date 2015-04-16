@@ -10,7 +10,7 @@
 
 namespace RegRev;
 
-use RegRev\CharType;
+use RegRev\Metacharacter\CharType;
 
 /**
  * Class RevReg

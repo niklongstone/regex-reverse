@@ -8,24 +8,22 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Metacharacter\CharType;
 
-use RegRev\CharType\Alpha;
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class AlphaTest extends \PHPUnit_Framework_TestCase
+class Blank extends CharacterHandler
 {
-    public function setup()
+    /**
+     * {@inheritdoc}
+     */
+    public function generate()
     {
-        $this->alpha = new Alpha();
-    }
-
-    public function testGenerate()
-    {
-        $this->assertTrue(ctype_alpha($this->alpha->generate()));
+        return ' ';
     }
 }
