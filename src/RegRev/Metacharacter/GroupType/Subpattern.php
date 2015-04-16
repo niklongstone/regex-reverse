@@ -10,6 +10,8 @@
 
 namespace RegRev\Metacharacter\GroupType;
 
+use RegRev\Metacharacter\CharacterHandler;
+
 /**
  * Class CharType
  *
@@ -21,16 +23,14 @@ class Subpattern extends CharacterHandler
     private $match;
 
     /**
-     * @param string $string
-     *
-     * @return bool
+     * {@inheritdoc}
      */
     public function isValid($string)
     {
-        foreach ($this->chars as $char) {
-            if (strpos($string, $char) === 0) {
+        foreach ($this->getChars() as $char) {
+            if (preg_match($char, $string)) {
                 $this->match = $char;
-            //\(.*\)$
+
                 return true;
             }
         }

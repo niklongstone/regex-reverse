@@ -27,7 +27,7 @@ abstract class CharacterHandler
      */
     public function isValid($string)
     {
-        foreach ($this->chars as $char) {
+        foreach ($this->getChars() as $char) {
             if (strpos($string, $char) === 0) {
                 $this->match = $char;
 
