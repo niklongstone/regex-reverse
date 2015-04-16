@@ -37,6 +37,7 @@ class RegRev
                     self::$typesFound[] = $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
+
                     break;
                 }
             }
@@ -69,6 +70,10 @@ class RegRev
 
         $charType = new CharType\NonAlnum();
         $charType->setChar('\W');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\GroupType\Subpattern();
+        $charType->setChar('/\(.*\)/');
         self::$expressions->set($charType);
 
         $charType = new CharType\Unknown();

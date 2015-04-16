@@ -11,6 +11,7 @@
 namespace RegRev\Metacharacter\GroupType;
 
 use RegRev\Metacharacter\CharacterHandler;
+use RegRev\RegRev;
 
 /**
  * Class CharType
@@ -19,17 +20,14 @@ use RegRev\Metacharacter\CharacterHandler;
  */
 class Subpattern extends CharacterHandler
 {
-    private $chars = array();
-    private $match;
-
     /**
      * {@inheritdoc}
      */
     public function isValid($string)
     {
         foreach ($this->getChars() as $char) {
-            if (preg_match($char, $string)) {
-                $this->match = $char;
+            if (preg_match($char, $string, $match)) {
+                $this->setMatch(substr($match[0], 1, -1));
 
                 return true;
             }
@@ -43,6 +41,6 @@ class Subpattern extends CharacterHandler
      */
     public function generate()
     {
-        return true;
+        return RegRev::generate($this->getMatch());
     }
 }

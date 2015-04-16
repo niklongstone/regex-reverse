@@ -25,7 +25,7 @@ class Alpha extends CharacterHandler
     public function generate()
     {
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randomIndex = rand(0, strlen($characters));
+        $randomIndex = rand(0, strlen($characters) -1);
 
         return $characters[$randomIndex];
     }

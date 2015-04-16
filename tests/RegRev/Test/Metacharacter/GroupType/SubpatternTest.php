@@ -25,11 +25,19 @@ class SubpatternTest extends \PHPUnit_Framework_TestCase
         $this->subpattern->setChar('/\(.*\)/');
     }
 
-    public function testGenerate()
+    public function testIsValid()
     {
         $pattern = "123-_()(())p";
-        $vaid = $this->subpattern->isValid($pattern);
+        $valid = $this->subpattern->isValid($pattern);
 
-        $this->assertTrue($vaid);
+        $this->assertTrue($valid);
+    }
+
+    public function testGeneration()
+    {
+        $pattern = "(\d)";
+        $this->subpattern->isValid($pattern);
+
+        $this->assertTrue(is_numeric($this->subpattern->generate()));
     }
 }

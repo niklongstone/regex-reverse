@@ -20,12 +20,14 @@ use RegRev\Metacharacter\CharacterHandler;
  */
 class Unknown extends CharacterHandler
 {
+    private $string;
+
     /**
      * {@inheritdoc}
      */
     public function generate()
     {
-        return ' ';
+        return $this->string;
     }
 
     /**
@@ -33,6 +35,8 @@ class Unknown extends CharacterHandler
      */
     public function isValid($string)
     {
+        $this->string = $string;
+
         return true;
     }
 
@@ -41,6 +45,6 @@ class Unknown extends CharacterHandler
      */
     public function getMatch()
     {
-        return ' ';
+        return $this->string;
     }
 }

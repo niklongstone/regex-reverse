@@ -24,8 +24,8 @@ class NonAlnum extends CharacterHandler
      */
     public function generate()
     {
-        $characters = "!@£$%^&*()-_=+{}[];:'\"|<>?,./`~";
-        $randomIndex = rand(0, strlen($characters));
+        $characters = "./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?-";
+        $randomIndex = rand(0, strlen($characters) -1);
 
         return $characters[$randomIndex];
     }

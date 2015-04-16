@@ -28,8 +28,8 @@ abstract class CharacterHandler
     public function isValid($string)
     {
         foreach ($this->getChars() as $char) {
-            if (strpos($string, $char) === 0) {
-                $this->match = $char;
+            if ($pos = strpos($string, $char) === 0) {
+                $this->match = substr($string, 0, strlen($char));
 
                 return true;
             }
@@ -69,6 +69,16 @@ abstract class CharacterHandler
     public function getMatch()
     {
         return $this->match;
+    }
+
+   /**
+     * @param string $match
+     *
+     * @return string mixed
+     */
+    public function setMatch($match)
+    {
+        $this->match = $match;
     }
 
     /**

@@ -25,7 +25,7 @@ class Alnum extends CharacterHandler
     public function generate()
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randomIndex = rand(0, strlen($characters));
+        $randomIndex = rand(0, strlen($characters) -1);
 
         return $characters[$randomIndex];
     }
