@@ -8,24 +8,27 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\CharType\Alpha;
+use RegRev\Metacharacter\CharType\Unknown;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class AlphaTest extends \PHPUnit_Framework_TestCase
+class UnknownTest extends \PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->alpha = new Alpha();
+        $this->unknown = new Unknown();
     }
 
-    public function testGenerate()
+    public function testGeneration()
     {
-        $this->assertTrue(ctype_alpha($this->alpha->generate()));
+        $pattern = "a";
+        $this->unknown->isValid($pattern);
+
+        $this->assertEquals($pattern, $this->unknown->generate());
     }
 }

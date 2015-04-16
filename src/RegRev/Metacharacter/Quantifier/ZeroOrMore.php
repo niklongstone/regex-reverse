@@ -8,23 +8,21 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\Quantifier;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class ZeroOrMore,
+ * handles zero or more condition.
  */
-class Alnum extends CharType
+class ZeroOrMore extends OneOrMore
 {
     /**
      * {@inheritdoc}
      */
     public function generate()
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randomIndex = rand(0, strlen($characters));
+        $quantity = $this->getQuanitity(0, 10);
 
-        return $characters[$randomIndex];
+        return $this->generateQuanitity($quantity);
     }
 }

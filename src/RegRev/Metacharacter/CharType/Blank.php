@@ -8,14 +8,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\CharType;
+
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class Blank,
+ * handles blank character.
  */
-class Blank extends CharType
+class Blank extends CharacterHandler
 {
     /**
      * {@inheritdoc}

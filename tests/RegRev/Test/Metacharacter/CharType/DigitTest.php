@@ -8,9 +8,9 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\CharType\Digit;
+use RegRev\Metacharacter\CharType\Digit;
 
 /**
  * Class Number

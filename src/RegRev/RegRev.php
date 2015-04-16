@@ -10,12 +10,10 @@
 
 namespace RegRev;
 
-use RegRev\CharType;
+use RegRev\Metacharacter\CharType;
 
 /**
  * Class RevReg
- *
- * @package RevReg
  */
 class RegRev
 {
@@ -31,12 +29,13 @@ class RegRev
     {
         self::setUp();
         self::$typesFound = array();
-        while ($regExp != '') {
+        while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
                 if ($type->isValid($regExp)) {
-                    self::$typesFound[] = $type;
+                    self::$typesFound[] = clone $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
+
                     break;
                 }
             }
@@ -50,25 +49,60 @@ class RegRev
         self::$expressions = new ExpressionContainer();
 
         $charType = new CharType\Digit();
-        $charType->setChar('\d');
+        $charType->setPattern('\d');
         self::$expressions->set($charType);
 
         $charType = new CharType\Alpha();
-        $charType->setChar('\D');
+        $charType->setPattern('\D');
         self::$expressions->set($charType);
 
         $charType = new CharType\Blank();
-        $charType->setChar('\h');
-        $charType->setChar('\s');
+        $charType->setPattern('\h');
+        $charType->setPattern('\s');
         self::$expressions->set($charType);
 
         $charType = new CharType\Alnum();
-        $charType->setChar('\w');
-        $charType->setChar('\S');
+        $charType->setPattern('\w');
+        $charType->setPattern('\S');
         self::$expressions->set($charType);
 
         $charType = new CharType\NonAlnum();
-        $charType->setChar('\W');
+        $charType->setPattern('\W');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\GroupType\Subpattern();
+        $charType->setPattern('/^\(.*\)/');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Quantifier\ZeroOrMore();
+        $charType->setPattern('*');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Quantifier\OneOrMore();
+        $charType->setPattern('+');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Quantifier\ZeroOrOne();
+        $charType->setPattern('?');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Quantifier\NTimes();
+        $charType->setPattern('/^\{(\d*),?(\d*)?\}/');
+        self::$expressions->set($charType);
+
+        $charType = new CharType\Generic();
+        $charType->setPattern('\.');
+        $charType->setReturnValue('.');
+        self::$expressions->set($charType);
+
+        $charType = new CharType\Generic();
+        $charType->setPattern('\(');
+        $charType->setReturnValue('(');
+        self::$expressions->set($charType);
+
+        $charType = new CharType\Generic();
+        $charType->setPattern('\)');
+        $charType->setReturnValue(')');
         self::$expressions->set($charType);
 
         $charType = new CharType\Unknown();
@@ -77,11 +111,11 @@ class RegRev
 
     static private function outPut()
     {
-        $result = null;
-        foreach (self::$typesFound as $typeFound) {
-            $result .= $typeFound->generate();
+        $typeFound = self::$typesFound[0];
+        for ($i = 0; $i < count(self::$typesFound) -1; $i++) {
+            self::$typesFound[$i]->setSuccessor(self::$typesFound[$i+1]);
         }
 
-        return $result;
+        return $typeFound->getResult();
     }
 }
