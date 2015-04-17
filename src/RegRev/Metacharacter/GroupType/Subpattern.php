@@ -27,7 +27,7 @@ class Subpattern extends CharacterHandler
     {
         foreach ($this->getChars() as $char) {
             if (preg_match($char, $string, $match)) {
-                $this->setMatch(substr($match[0], 1, -1));
+                $this->setMatch($match[0]);
 
                 return true;
             }
@@ -41,6 +41,6 @@ class Subpattern extends CharacterHandler
      */
     public function generate()
     {
-        return RegRev::generate($this->getMatch());
+        return RegRev::generate(substr($this->getMatch(), 1, -1));
     }
 }

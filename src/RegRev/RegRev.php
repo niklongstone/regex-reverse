@@ -31,13 +31,13 @@ class RegRev
     {
         self::setUp();
         self::$typesFound = array();
-        while ($regExp != '') {
+        while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
                 if ($type->isValid($regExp)) {
                     self::$typesFound[] = $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
-
+                    echo get_class($type) . ' | ' . $regExp . ' >' . $lengthOfMatch . ' countRegex:' . strlen($regExp); echo PHP_EOL;
                     break;
                 }
             }
@@ -78,6 +78,14 @@ class RegRev
 
         $charType = new Metacharacter\Conditional\ZeroOrMore();
         $charType->setChar('*');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Conditional\OneOrMore();
+        $charType->setChar('+');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Conditional\ZeroOrOne();
+        $charType->setChar('?');
         self::$expressions->set($charType);
 
         $charType = new CharType\Unknown();

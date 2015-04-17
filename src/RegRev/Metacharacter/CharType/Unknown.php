@@ -35,7 +35,7 @@ class Unknown extends CharacterHandler
      */
     public function isValid($string)
     {
-        $this->string = $string;
+        $this->string = $string[0];
 
         return true;
     }
