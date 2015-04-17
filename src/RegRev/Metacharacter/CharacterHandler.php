@@ -19,6 +19,8 @@ abstract class CharacterHandler
 {
     private $chars = array();
     private $match;
+    private $successor;
+    private $previous;
 
     /**
      * @param string $string
@@ -97,7 +99,7 @@ abstract class CharacterHandler
     final public function setSuccessor(CharacterHandler $handler)
     {
         $this->successor = $handler;
-        $this->successor->setPreiovus($this);
+        $this->successor->setPrevious($this);
     }
 
     /**
@@ -106,5 +108,28 @@ abstract class CharacterHandler
     final public function setPrevious(CharacterHandler $handler)
     {
         $this->previous = $handler;
+    }
+
+    /**
+     * @return CharacterHandler
+     */
+    final public function getPrevious()
+    {
+        return $this->previous;
+    }
+
+    /**
+     * @param null $result
+     *
+     * @return null|string
+     */
+    final public function getResult($result = null)
+    {
+        $result.= $this->generate();
+        if ($this->successor !== null) {
+            return $this->successor->getResult($result);
+        }
+
+        return $result;
     }
 }

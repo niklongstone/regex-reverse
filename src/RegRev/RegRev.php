@@ -76,17 +76,21 @@ class RegRev
         $charType->setChar('/\(.*\)/');
         self::$expressions->set($charType);
 
+        $charType = new Metacharacter\Conditional\ZeroOrMore();
+        $charType->setChar('*');
+        self::$expressions->set($charType);
+
         $charType = new CharType\Unknown();
         self::$expressions->set($charType);
     }
 
     static private function outPut()
     {
-        $result = null;
-        foreach (self::$typesFound as $typeFound) {
-            $result .= $typeFound->generate();
+        $typeFound = self::$typesFound[0];
+        for ($i = 0; $i < count(self::$typesFound) -1; $i++) {
+            self::$typesFound[$i]->setSuccessor(self::$typesFound[$i+1]);
         }
 
-        return $result;
+        return $typeFound->getResult();
     }
 }
