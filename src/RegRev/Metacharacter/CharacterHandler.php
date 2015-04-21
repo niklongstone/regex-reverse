@@ -30,7 +30,7 @@ abstract class CharacterHandler
     public function isValid($string)
     {
         foreach ($this->getChars() as $char) {
-            if ($pos = strpos($string, $char) === 0) {
+            if (strpos($string, $char) === 0) {
                 $this->match = substr($string, 0, strlen($char));
 
                 return true;
@@ -121,7 +121,7 @@ abstract class CharacterHandler
     /**
      * @param null $result
      *
-     * @return null|string
+     * @return string
      */
     final public function getResult($result = null)
     {
