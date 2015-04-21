@@ -14,7 +14,7 @@ use RegRev\RegRev;
 
 class RegRevTest extends \PHPUnit_Framework_TestCase
 {
-
+/*
     public function testSupportedRegex()
     {
         $string = '\d';
@@ -28,6 +28,42 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
         $string = '#';
         $result = RegRev::generate($string);
 
-        $this->assertEquals(' ',$result);
+        $this->assertEquals($string, $result);
+    }
+*/
+    /**
+     * @dataProvider regExData
+     */
+    public function testAdvancedSupportedRegex($expression)
+    {
+        $result = RegRev::generate($expression);
+        $this->assertTrue(
+            (boolean)preg_match('/' . $expression . '/i', $result),
+            sprintf('The result "%s", do not match the regex "/%s/"', $result, $expression)
+        );
+    }
+
+    public function regExData()
+    {
+        return array(
+            array('a'),
+            array('\d'),
+            array('\d*'),
+            array('\D'),
+            array('\w'),
+            array('\w*'),
+            array('\W'),
+            array('\W*'),
+            array('\s'),
+            array('\s*'),
+            array('\S'),
+            array('\h'),
+            array('(\d)'),
+            array('(\d)'),
+            array('\w+'),
+            array('\w@\d@\w+'),
+            array('(a+b*)+'),
+            array('\w+@\w+\.com')
+        );
     }
 }

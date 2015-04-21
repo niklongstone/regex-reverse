@@ -8,11 +8,11 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\CharType;
+namespace RegRev\Test\Metacharacter;
 
-use RegRev\CharType\CharType;
+use RegRev\Metacharacter\CharacterHandler;
 
-class TestCharType extends CharType
+class TestCharacterHandler extends CharacterHandler
 {
     public function generate(){ return null;}
 }
@@ -23,11 +23,11 @@ class TestCharType extends CharType
  *
  * @package RevReg\Char
  */
-class CharTypetest extends \PHPUnit_Framework_TestCase
+class CharacterHandlerTest extends \PHPUnit_Framework_TestCase
 {
     public function testisValid()
     {
-        $charTypeTest = new TestCharType();
+        $charTypeTest = new TestCharacterHandler();
         $charTypeTest->setChar('\d');
 
         $this->assertTrue($charTypeTest->isValid('\d'));

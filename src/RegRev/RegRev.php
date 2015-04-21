@@ -10,12 +10,10 @@
 
 namespace RegRev;
 
-use RegRev\CharType;
+use RegRev\Metacharacter\CharType;
 
 /**
  * Class RevReg
- *
- * @package RevReg
  */
 class RegRev
 {
@@ -31,12 +29,13 @@ class RegRev
     {
         self::setUp();
         self::$typesFound = array();
-        while ($regExp != '') {
+        while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
                 if ($type->isValid($regExp)) {
-                    self::$typesFound[] = $type;
+                    self::$typesFound[] = clone $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
+
                     break;
                 }
             }
@@ -71,17 +70,38 @@ class RegRev
         $charType->setChar('\W');
         self::$expressions->set($charType);
 
+        $charType = new Metacharacter\GroupType\Subpattern();
+        $charType->setChar('/\(.*\)/');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Conditional\ZeroOrMore();
+        $charType->setChar('*');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Conditional\OneOrMore();
+        $charType->setChar('+');
+        self::$expressions->set($charType);
+
+        $charType = new Metacharacter\Conditional\ZeroOrOne();
+        $charType->setChar('?');
+        self::$expressions->set($charType);
+
+        $charType = new CharType\Generic();
+        $charType->setChar('\.');
+        $charType->setReturnValue('.');
+        self::$expressions->set($charType);
+
         $charType = new CharType\Unknown();
         self::$expressions->set($charType);
     }
 
     static private function outPut()
     {
-        $result = null;
-        foreach (self::$typesFound as $typeFound) {
-            $result .= $typeFound->generate();
+        $typeFound = self::$typesFound[0];
+        for ($i = 0; $i < count(self::$typesFound) -1; $i++) {
+            self::$typesFound[$i]->setSuccessor(self::$typesFound[$i+1]);
         }
 
-        return $result;
+        return $typeFound->getResult();
     }
 }
