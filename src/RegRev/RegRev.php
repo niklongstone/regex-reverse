@@ -34,10 +34,10 @@ class RegRev
         while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
                 if ($type->isValid($regExp)) {
-                    self::$typesFound[] = $type;
+                    self::$typesFound[] = clone $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
-                    echo get_class($type) . ' | ' . $regExp . ' >' . $lengthOfMatch . ' countRegex:' . strlen($regExp); echo PHP_EOL;
+
                     break;
                 }
             }

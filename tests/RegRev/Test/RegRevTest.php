@@ -46,9 +46,23 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
     public function regExData()
     {
         return array(
-            array('\w@\w@\w+')
-
-//email            array('\w+@\w+\.D{2,6}')
+            array('a'),
+            array('\d'),
+            array('\d*'),
+            array('\D'),
+            array('\w'),
+            array('\w*'),
+            array('\W'),
+            array('\W*'),
+            array('\s'),
+            array('\s*'),
+            array('\S'),
+            array('\h'),
+            array('(\d)'),
+            array('(\d)'),
+            array('\w+'),
+            array('\w@\d@\w+'),
+          //  array('\w+@\w+\.D{2,6}')
         );
     }
 }

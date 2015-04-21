@@ -37,6 +37,14 @@ echo RegRev::generate('\d'); //ouput a random number
 |    \s      |    space    |    a blank space        |
 |    \S      |    space    |    a non blank space    |
 
+## Conditional and subgroup
+| Expression | Description    | Example   |  Result     |
+|------------|----------------|-----------|-------------|
+|    ()      |  subgroup      | (\d\w)+@  | 97a987Ss@   |
+|    *       |  zero or more  |   \d*     |  123502     |
+|    +       |  one or more   |   \d+     |   32133     |
+|    ?       |  zero or one   |   \d?     |     3       |
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
