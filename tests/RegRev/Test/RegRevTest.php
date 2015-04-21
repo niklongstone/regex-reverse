@@ -62,7 +62,8 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
             array('(\d)'),
             array('\w+'),
             array('\w@\d@\w+'),
-          //  array('\w+@\w+\.D{2,6}')
+            array('(a+b*)+'),
+            array('\w+@\w+\.com')
         );
     }
 }

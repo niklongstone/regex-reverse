@@ -11,9 +11,7 @@
 namespace RegRev\Metacharacter;
 
 /**
- * Class CharType
- *
- * @package RegRev\CharType
+ * Class CharacterHandler
  */
 abstract class CharacterHandler
 {

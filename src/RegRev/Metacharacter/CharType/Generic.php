@@ -13,36 +13,29 @@ namespace RegRev\Metacharacter\CharType;
 use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Unknown,
- * handles character not recognized by the supported expression.
+ * Class Generic,
+ * provides supported for escaped generic characters,
+ * returns the value set via setReturnValue.
  */
-class Unknown extends CharacterHandler
+class Generic extends CharacterHandler
 {
-    private $string;
+    private $returnValue;
 
     /**
      * {@inheritdoc}
      */
     public function generate()
     {
-        return $this->string;
+        return $this->returnValue;
     }
 
     /**
-     * {@inheritdoc}
+     * Sets the value should return the generate method.
+     *
+     * @param string $string
      */
-    public function isValid($string)
+    public function setReturnValue($string)
     {
-        $this->string = $string[0];
-
-        return true;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMatch()
-    {
-        return $this->string;
+        $this->returnValue = $string;
     }
 }

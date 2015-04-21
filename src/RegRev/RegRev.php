@@ -14,8 +14,6 @@ use RegRev\Metacharacter\CharType;
 
 /**
  * Class RevReg
- *
- * @package RevReg
  */
 class RegRev
 {
@@ -86,6 +84,11 @@ class RegRev
 
         $charType = new Metacharacter\Conditional\ZeroOrOne();
         $charType->setChar('?');
+        self::$expressions->set($charType);
+
+        $charType = new CharType\Generic();
+        $charType->setChar('\.');
+        $charType->setReturnValue('.');
         self::$expressions->set($charType);
 
         $charType = new CharType\Unknown();

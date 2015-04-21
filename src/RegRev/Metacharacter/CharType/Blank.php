@@ -13,9 +13,8 @@ namespace RegRev\Metacharacter\CharType;
 use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class Blank,
+ * handles blank character.
  */
 class Blank extends CharacterHandler
 {

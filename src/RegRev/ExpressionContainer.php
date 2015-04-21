@@ -10,6 +10,9 @@
 
 namespace RegRev;
 
+/**
+ * Class ExpressionContainer
+ */
 class ExpressionContainer implements \Iterator {
     private $position = 0;
 

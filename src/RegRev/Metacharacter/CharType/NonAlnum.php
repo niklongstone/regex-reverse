@@ -13,9 +13,8 @@ namespace RegRev\Metacharacter\CharType;
 use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class NonAlnum,
+ * handles non alphanumeric characters.
  */
 class NonAlnum extends CharacterHandler
 {

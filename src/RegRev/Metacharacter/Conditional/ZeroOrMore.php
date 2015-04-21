@@ -13,9 +13,8 @@ namespace RegRev\Metacharacter\Conditional;
 use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class ZeroOrMore,
+ * handles zero or more condition.
  */
 class ZeroOrMore extends CharacterHandler
 {

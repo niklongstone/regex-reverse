@@ -13,9 +13,8 @@ namespace RegRev\Metacharacter\CharType;
 use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class Digit,
+ * handles digit characters.
  */
 class Digit extends CharacterHandler
 {

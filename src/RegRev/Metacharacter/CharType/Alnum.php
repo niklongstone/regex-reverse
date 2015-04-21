@@ -13,9 +13,8 @@ namespace RegRev\Metacharacter\CharType;
 use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class Alnum,
+ * handles alphanumeric characters.
  */
 class Alnum extends CharacterHandler
 {

@@ -14,9 +14,8 @@ use RegRev\Metacharacter\CharacterHandler;
 use RegRev\RegRev;
 
 /**
- * Class CharType
- *
- * @package RegRev\CharType
+ * Class Subpattern,
+ * handles the subpattern match.
  */
 class Subpattern extends CharacterHandler
 {
