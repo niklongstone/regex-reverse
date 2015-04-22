@@ -8,24 +8,24 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\CharType\Alnum;
+use RegRev\Metacharacter\CharType\Alpha;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class AlnumTest extends \PHPUnit_Framework_TestCase
+class AlphaTest extends \PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->alnum = new Alnum();
+        $this->alpha = new Alpha();
     }
 
     public function testGenerate()
     {
-        $this->assertTrue(ctype_alnum($this->alnum->generate()));
+        $this->assertTrue(ctype_alpha($this->alpha->generate()));
     }
 }

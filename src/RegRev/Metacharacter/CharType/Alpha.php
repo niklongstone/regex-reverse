@@ -8,14 +8,15 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\CharType;
+
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class Alpha,
+ * handles alpha characters.
  */
-class Alpha extends CharType
+class Alpha extends CharacterHandler
 {
     /**
      * {@inheritdoc}
@@ -23,7 +24,7 @@ class Alpha extends CharType
     public function generate()
     {
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randomIndex = rand(0, strlen($characters));
+        $randomIndex = rand(0, strlen($characters) -1);
 
         return $characters[$randomIndex];
     }
