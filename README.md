@@ -56,7 +56,7 @@ echo RegRev::generate('\d'); //ouput a random number
 | www\.\w+\.com             | www.h3MEb7k.com        | URL                    |
 | 192\.\d{3}.255.\d{1,3}    | 192.134.255.4          | Ip address             |
 | \D{3,7}\s\D{2}\s\d{2,5}   | mslchvi Rr 861         | US address             |
-
+| <TAG\s.*>.*?<\/TAG>       | <TAG fNol>ZPXApG</TAG> | TAG                    |
 
 ## Contributing
 

@@ -64,6 +64,7 @@ class RegRev
         $charType->setChars('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
         $charType->setPattern('\w');
         $charType->setPattern('\S');
+        $charType->setPattern('.');
         self::$expressions->set($charType);
 
         //non alphanumeric chars
@@ -99,7 +100,7 @@ class RegRev
         $charType->setReturnValue(' ');
         self::$expressions->set($charType);
 
-        //dot
+        //escaped dot
         $charType = new CharType\Generic();
         $charType->setPattern('\.');
         $charType->setReturnValue('.');
@@ -115,6 +116,12 @@ class RegRev
         $charType = new CharType\Generic();
         $charType->setPattern('\)');
         $charType->setReturnValue(')');
+        self::$expressions->set($charType);
+
+        //slash
+        $charType = new CharType\Generic();
+        $charType->setPattern('\/');
+        $charType->setReturnValue('/');
         self::$expressions->set($charType);
 
         $charType = new CharType\Unknown();
