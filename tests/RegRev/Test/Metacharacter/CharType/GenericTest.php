@@ -10,22 +10,23 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\Metacharacter\CharType\NonAlnum;
+use RegRev\Metacharacter\CharType\Generic;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class NonAlnumTest extends \PHPUnit_Framework_TestCase
+class GenericTest extends \PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->nonAlnum = new NonAlnum();
+        $this->blank = new Generic();
+        $this->blank->setReturnValue(' ');
     }
 
     public function testGenerate()
     {
-        $this->assertFalse(ctype_alnum($this->nonAlnum->generate()));
+        $this->assertEquals(' ', $this->blank->generate());
     }
 }

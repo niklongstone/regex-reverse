@@ -10,19 +10,22 @@
 
 namespace RegRev\Metacharacter\CharType;
 
-use RegRev\Metacharacter\CharacterHandler;
-
 /**
- * Class Blank,
- * handles blank character.
+ * Defines an interface for a list of characters.
  */
-class Blank extends CharacterHandler
+interface CharListInterface
 {
     /**
-     * {@inheritdoc}
+     * Sets the character list
+     *
+     * @param string $charList
      */
-    public function generate()
-    {
-        return ' ';
-    }
+    public function setChars($charList);
+
+    /**
+     * Gets the character list.
+     *
+     * @return string
+     */
+    public function getChars();
 }
