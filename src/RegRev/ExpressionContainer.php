@@ -13,12 +13,14 @@ namespace RegRev;
 /**
  * Class ExpressionContainer
  */
-class ExpressionContainer implements \Iterator {
+class ExpressionContainer implements \Iterator
+{
     private $position = 0;
 
     private $expressions = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->position = 0;
     }
 

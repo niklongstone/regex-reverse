@@ -10,7 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\Metacharacter\CharType\Digit;
+use RegRev\Metacharacter\CharType\Generic;
 use RegRev\Metacharacter\Quantifier\ZeroOrMore;
 
 /**
@@ -25,7 +25,8 @@ class ZeroOrMoreTest extends \PHPUnit_Framework_TestCase
         $this->regEx = new ZeroOrMore();
         $this->regEx->setPattern('*');
 
-        $successor = new Digit();
+        $successor = new Generic();
+        $successor->setReturnValue('1');
         $successor->setPattern('\d');
         $successor->setSuccessor($this->regEx);
     }

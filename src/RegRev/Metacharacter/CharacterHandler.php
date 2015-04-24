@@ -117,11 +117,11 @@ abstract class CharacterHandler
     }
 
     /**
-     * @param null $result
+     * @param string $result
      *
-     * @return string|null
+     * @return string
      */
-    final public function getResult($result = null)
+    final public function getResult($result = '')
     {
         $result.= $this->generate();
         if ($this->successor !== null) {

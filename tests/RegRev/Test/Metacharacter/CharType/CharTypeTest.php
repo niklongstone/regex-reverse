@@ -10,22 +10,22 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\Metacharacter\CharType\Digit;
+use RegRev\Metacharacter\CharType\CharType;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class DigitTest extends \PHPUnit_Framework_TestCase
+class CharTypeTest extends \PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->number = new Digit();
+        $this->digit = new CharType();
+        $this->digit->setChars('01');
     }
-
     public function testGenerate()
     {
-        $this->assertTrue(is_numeric($this->number->generate()));
+        $this->assertTrue(is_numeric($this->digit->generate()));
     }
 }
