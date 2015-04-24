@@ -28,6 +28,46 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
         $string = '#';
         $result = RegRev::generate($string);
 
-        $this->assertEquals(' ',$result);
+        $this->assertEquals($string, $result);
+    }
+
+    /**
+     * @dataProvider regExData
+     */
+    public function testAdvancedSupportedRegex($expression)
+    {
+        $matchedExpression = null;
+        $result = RegRev::generate($expression);
+        preg_match('/(' . $expression . ')$/i', $result, $match);
+        if (isset($match[0])) {
+            $matchedExpression = $match[0];
+        }
+
+        $this->assertEquals($matchedExpression, $result,
+            sprintf('The result "%s", do not match the regex "/%s/"', $result, $expression)
+        );
+    }
+
+    public function regExData()
+    {
+        return array(
+            array('a{1,3}'),
+            array('\d'),
+            array('\d*'),
+            array('\D'),
+            array('\w'),
+            array('\w*'),
+            array('\W'),
+            array('\W*'),
+            array('\h\S\s*\s'),
+            array('(\d)'),
+            array('\w+'),
+            array('\w@\d@\w+'),
+            array('(a+b*)+'),
+            array('\.com'),
+            array('\(\d{3}\)\s\d{7}'),
+            array('\w+@\w+\.\D{2,3}'),
+            array('<TAG\s.*>.*?<\/TAG>')
+        );
     }
 }

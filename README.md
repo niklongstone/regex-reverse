@@ -37,6 +37,27 @@ echo RegRev::generate('\d'); //ouput a random number
 |    \s      |    space    |    a blank space        |
 |    \S      |    space    |    a non blank space    |
 
+## Conditional and subgroup
+| Expression    | Description      | Example   |  Result     |
+|---------------|------------------|-----------|-------------|
+|    ()         |  subgroup        | (\d\w)+@  | 97a987Ss@   |
+|    *          |  zero or more    |   \d*     |  123502     |
+|    +          |  one or more     |   \d+     |   32133     |
+|    ?          |  zero or one     |   \d?     |     3       |
+|{n} {n,} {n,m} |from n to m times | \w{1,3}   |    np       |
+
+##Examples
+
+| Expression                | Result                 | Description
+|---------------------------|------------------------|------------------------|
+| \d{3}-\d{3}-\d{4}         | 212-686-1234           | US phone number        |
+| \(\d{3}\)\s\d{7}          | (957) 7583632          | phone with area code   |
+| \w+@\w+\.\D{2,3}          | yiuh@qwerty.com        | email                  |
+| www\.\w+\.com             | www.h3MEb7k.com        | URL                    |
+| 192\.\d{3}.255.\d{1,3}    | 192.134.255.4          | Ip address             |
+| \D{3,7}\s\D{2}\s\d{2,5}   | mslchvi Rr 861         | US address             |
+| <TAG\s.*>.*?<\/TAG>       | <TAG fNol>ZPXApG</TAG> | TAG                    |
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
