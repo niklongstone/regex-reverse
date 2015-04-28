@@ -26,8 +26,8 @@ class Range extends Subpattern
     {
         $match = substr($this->getMatch(), 1, -1);
         $resultRange = '';
-
-        for ($i = 0; $i < strlen($match); $i++) {
+        $matchLength = strlen($match);
+        for ($i = 0; $i < $matchLength; $i++) {
             if ($match[$i] != '-') {
                 $resultRange.= $match[$i];
             } else {
