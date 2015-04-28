@@ -46,17 +46,28 @@ echo RegRev::generate('\d'); //ouput a random number
 |    ?          |  zero or one     |   \d?     |     3       |
 |{n} {n,} {n,m} |from n to m times | \w{1,3}   |    np       |
 
+## Ranges
+| Expression       | Description      |   Result     |
+|------------------|------------------|--------------|
+|    [0-9]         |  range 0 to 9    |      7       |
+|    [a-d]         |  range a to b    |      b       |
+|    [0-9c-f]      | range 0-9 or c-f |      d       |
+
 ##Examples
 
-| Expression                | Result                 | Description
-|---------------------------|------------------------|------------------------|
-| \d{3}-\d{3}-\d{4}         | 212-686-1234           | US phone number        |
-| \(\d{3}\)\s\d{7}          | (957) 7583632          | phone with area code   |
-| \w+@\w+\.\D{2,3}          | yiuh@qwerty.com        | email                  |
-| www\.\w+\.com             | www.h3MEb7k.com        | URL                    |
-| 192\.\d{3}.255.\d{1,3}    | 192.134.255.4          | Ip address             |
-| \D{3,7}\s\D{2}\s\d{2,5}   | mslchvi Rr 861         | US address             |
-| <TAG\s.*>.*?<\/TAG>       | <TAG fNol>ZPXApG</TAG> | TAG                    |
+| Expression                   | Result                  | Description
+|------------------------------|-------------------------|------------------------|
+| 2\d{2}-\d{3}-\d{4}           | 212-686-1234            | US phone number        |
+| \(\d{3}\)\s\d{7}             | (957) 7583632           | phone with area code   |
+| \w+@\w+\.\D{2,3}             | yiuh@qwerty.com         | email                  |
+| www\.\w+\.com                | www.h3MEb7k.com         | URL                    |
+| 192\.\d{3}.255.\d{1,3}       | 192.134.255.4           | Ip address             |
+| \D{3,7}\s\D{2}\s\d{2,5}      | mslchvi Rr 861          | US address             |
+| <TAG\s.*>.*?<\/TAG>          |`<TAG fNol>ZPXApG</TAG>` | TAG                    |
+| 004[0-9] \d{7,10}            | 0044 75132145           | europe phone           |
+|SE[1-9]{1}\d{1}\s[A-Z]{2}\d{2}| SE27 GU35               | london SE post code    |
+|SE[1-9]{1}\d{1}\s[A-Z]{2}\d{2}| SE27 GU35               | london SE post code    |
+| organi[sz]e                  | organise or organize    | US or UK spelling      |
 
 ## Contributing
 

@@ -11,6 +11,9 @@
 namespace RegRev;
 
 use RegRev\Metacharacter\CharType;
+use RegRev\Metacharacter\GroupType;
+use RegRev\Metacharacter\Quantifier;
+use RegRev\Metacharacter\Range;
 
 /**
  * Class RevReg
@@ -73,23 +76,27 @@ class RegRev
         $charType->setPattern('\W');
         self::$expressions->set($charType);
 
-        $charType = new Metacharacter\GroupType\Subpattern();
-        $charType->setPattern('/^\(.*\)/');
+        $charType = new GroupType\Subpattern();
+        $charType->setPattern('/^\([^\)]*\)/');
         self::$expressions->set($charType);
 
-        $charType = new Metacharacter\Quantifier\ZeroOrMore();
+        $charType = new Range\Range();
+        $charType->setPattern('/^\[[^\]]*\]/');
+        self::$expressions->set($charType);
+
+        $charType = new Quantifier\ZeroOrMore();
         $charType->setPattern('*');
         self::$expressions->set($charType);
 
-        $charType = new Metacharacter\Quantifier\OneOrMore();
+        $charType = new Quantifier\OneOrMore();
         $charType->setPattern('+');
         self::$expressions->set($charType);
 
-        $charType = new Metacharacter\Quantifier\ZeroOrOne();
+        $charType = new Quantifier\ZeroOrOne();
         $charType->setPattern('?');
         self::$expressions->set($charType);
 
-        $charType = new Metacharacter\Quantifier\NTimes();
+        $charType = new Quantifier\NTimes();
         $charType->setPattern('/^\{(\d*),?(\d*)?\}/');
         self::$expressions->set($charType);
 
