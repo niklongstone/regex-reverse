@@ -8,24 +8,24 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\CharType\Alpha;
+use RegRev\Metacharacter\CharType\CharType;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class AlphaTest extends \PHPUnit_Framework_TestCase
+class CharTypeTest extends \PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->alpha = new Alpha();
+        $this->digit = new CharType();
+        $this->digit->setChars('01');
     }
-
     public function testGenerate()
     {
-        $this->assertTrue(ctype_alpha($this->alpha->generate()));
+        $this->assertTrue(is_numeric($this->digit->generate()));
     }
 }
