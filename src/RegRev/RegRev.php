@@ -10,11 +10,6 @@
 
 namespace RegRev;
 
-use RegRev\Metacharacter\CharType;
-use RegRev\Metacharacter\GroupType;
-use RegRev\Metacharacter\Quantifier;
-use RegRev\Metacharacter\Range;
-
 /**
  * Class RevReg
  */
@@ -47,92 +42,18 @@ class RegRev
         return self::outPut();
     }
 
+    /**
+     * Setup the configuration.
+     */
     static private function setUp()
     {
         self::$expressions = new ExpressionContainer();
-
-        $charType = new CharType\CharType();
-        $charType->setChars('0123456789');
-        $charType->setPattern('\d');
-        self::$expressions->set($charType);
-
-        //alpha chars
-        $charType = new CharType\CharType();
-        $charType->setChars('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        $charType->setPattern('\D');
-        self::$expressions->set($charType);
-
-        //alphanumeric chars
-        $charType = new CharType\CharType();
-        $charType->setChars('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        $charType->setPattern('\w');
-        $charType->setPattern('\S');
-        $charType->setPattern('.');
-        self::$expressions->set($charType);
-
-        //non alphanumeric chars
-        $charType = new CharType\CharType();
-        $charType->setChars("./\\()\"':,.;<>~!@#$%^&*|+=[]{}`~?-");
-        $charType->setPattern('\W');
-        self::$expressions->set($charType);
-
-        $charType = new GroupType\Subpattern();
-        $charType->setPattern('/^\([^\)]*\)/');
-        self::$expressions->set($charType);
-
-        $charType = new Range\Range();
-        $charType->setPattern('/^\[[^\]]*\]/');
-        self::$expressions->set($charType);
-
-        $charType = new Quantifier\ZeroOrMore();
-        $charType->setPattern('*');
-        self::$expressions->set($charType);
-
-        $charType = new Quantifier\OneOrMore();
-        $charType->setPattern('+');
-        self::$expressions->set($charType);
-
-        $charType = new Quantifier\ZeroOrOne();
-        $charType->setPattern('?');
-        self::$expressions->set($charType);
-
-        $charType = new Quantifier\NTimes();
-        $charType->setPattern('/^\{(\d*),?(\d*)?\}/');
-        self::$expressions->set($charType);
-
-        //blank space
-        $charType = new CharType\Generic();
-        $charType->setPattern('\h');
-        $charType->setPattern('\s');
-        $charType->setReturnValue(' ');
-        self::$expressions->set($charType);
-
-        //escaped dot
-        $charType = new CharType\Generic();
-        $charType->setPattern('\.');
-        $charType->setReturnValue('.');
-        self::$expressions->set($charType);
-
-        //left round bracket
-        $charType = new CharType\Generic();
-        $charType->setPattern('\(');
-        $charType->setReturnValue('(');
-        self::$expressions->set($charType);
-
-        //right round bracket
-        $charType = new CharType\Generic();
-        $charType->setPattern('\)');
-        $charType->setReturnValue(')');
-        self::$expressions->set($charType);
-
-        //slash
-        $charType = new CharType\Generic();
-        $charType->setPattern('\/');
-        $charType->setReturnValue('/');
-        self::$expressions->set($charType);
-
-        $charType = new CharType\Unknown();
-        self::$expressions->set($charType);
+        $configuration = new Configuration();
+        $parameters = $configuration->getConfig();
+        foreach ($parameters as $param) {
+            $charType = self::buildCharType($param);
+            self::$expressions->set($charType);
+        }
     }
 
     static private function outPut()
@@ -143,5 +64,24 @@ class RegRev
         }
 
         return $typeFound->getResult();
+    }
+
+    static private function buildCharType($param)
+    {
+        $charTypeClass = 'RegRev\\Metacharacter\\' .  $param['type'];
+        $charType = new $charTypeClass;
+        if (array_key_exists('chars', $param)) {
+            $charType->setChars($param['chars']);
+        }
+        if (array_key_exists('pattern', $param)) {
+            foreach ($param['pattern'] as $pat) {
+                $charType->setPattern($pat);
+            }
+        }
+        if (array_key_exists('returnValue', $param)) {
+            $charType->setReturnValue($param['returnValue']);
+        }
+
+        return $charType;
     }
 }
