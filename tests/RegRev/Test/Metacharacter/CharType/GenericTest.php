@@ -8,20 +8,21 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\CharType\Blank;
+use RegRev\Metacharacter\CharType\Generic;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class BlankTest extends \PHPUnit_Framework_TestCase
+class GenericTest extends \PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->blank = new Blank();
+        $this->blank = new Generic();
+        $this->blank->setReturnValue(' ');
     }
 
     public function testGenerate()

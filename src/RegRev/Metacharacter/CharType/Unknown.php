@@ -8,22 +8,24 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\CharType;
+
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
  * Class Unknown,
- * returns blank space for not supported regex.
- *
- * @package RevReg\Char
+ * handles character not recognized by the supported expression.
  */
-class Unknown extends CharType
+class Unknown extends CharacterHandler
 {
+    private $string;
+
     /**
      * {@inheritdoc}
      */
     public function generate()
     {
-        return ' ';
+        return $this->string;
     }
 
     /**
@@ -31,6 +33,8 @@ class Unknown extends CharType
      */
     public function isValid($string)
     {
+        $this->string = $string[0];
+
         return true;
     }
 
@@ -39,6 +43,6 @@ class Unknown extends CharType
      */
     public function getMatch()
     {
-        return ' ';
+        return $this->string;
     }
 }
