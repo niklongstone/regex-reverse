@@ -1,6 +1,14 @@
 # Changelog
 
-0.0.2
+0.1.0 / 2015-04-29
+==================
+  * Add range support
+  * Add quantifier support
+  * Add subpattern support
+  * Refactor classes
+  * Fix minor bugs
+
+0.0.2 / 2015-04-13
 ==================
 
   * Add more character types support
