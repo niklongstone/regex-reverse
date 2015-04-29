@@ -10,12 +10,8 @@
 
 namespace RegRev;
 
-use RegRev\CharType;
-
 /**
  * Class RevReg
- *
- * @package RevReg
  */
 class RegRev
 {
@@ -31,12 +27,13 @@ class RegRev
     {
         self::setUp();
         self::$typesFound = array();
-        while ($regExp != '') {
+        while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
                 if ($type->isValid($regExp)) {
-                    self::$typesFound[] = $type;
+                    self::$typesFound[] = clone $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
+
                     break;
                 }
             }
@@ -45,43 +42,46 @@ class RegRev
         return self::outPut();
     }
 
+    /**
+     * Setup the configuration.
+     */
     static private function setUp()
     {
         self::$expressions = new ExpressionContainer();
-
-        $charType = new CharType\Digit();
-        $charType->setChar('\d');
-        self::$expressions->set($charType);
-
-        $charType = new CharType\Alpha();
-        $charType->setChar('\D');
-        self::$expressions->set($charType);
-
-        $charType = new CharType\Blank();
-        $charType->setChar('\h');
-        $charType->setChar('\s');
-        self::$expressions->set($charType);
-
-        $charType = new CharType\Alnum();
-        $charType->setChar('\w');
-        $charType->setChar('\S');
-        self::$expressions->set($charType);
-
-        $charType = new CharType\NonAlnum();
-        $charType->setChar('\W');
-        self::$expressions->set($charType);
-
-        $charType = new CharType\Unknown();
-        self::$expressions->set($charType);
+        $configuration = new Configuration();
+        $parameters = $configuration->getConfig();
+        foreach ($parameters as $param) {
+            $charType = self::buildCharType($param);
+            self::$expressions->set($charType);
+        }
     }
 
     static private function outPut()
     {
-        $result = null;
-        foreach (self::$typesFound as $typeFound) {
-            $result .= $typeFound->generate();
+        $typeFound = self::$typesFound[0];
+        for ($i = 0; $i < count(self::$typesFound) -1; $i++) {
+            self::$typesFound[$i]->setSuccessor(self::$typesFound[$i+1]);
         }
 
-        return $result;
+        return $typeFound->getResult();
+    }
+
+    static private function buildCharType($param)
+    {
+        $charTypeClass = 'RegRev\\Metacharacter\\' .  $param['type'];
+        $charType = new $charTypeClass;
+        if (array_key_exists('chars', $param)) {
+            $charType->setChars($param['chars']);
+        }
+        if (array_key_exists('pattern', $param)) {
+            foreach ($param['pattern'] as $pat) {
+                $charType->setPattern($pat);
+            }
+        }
+        if (array_key_exists('returnValue', $param)) {
+            $charType->setReturnValue($param['returnValue']);
+        }
+
+        return $charType;
     }
 }

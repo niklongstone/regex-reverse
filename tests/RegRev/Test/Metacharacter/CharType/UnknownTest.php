@@ -8,24 +8,27 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Test\Char;
+namespace RegRev\Test\Metacharacter\CharType;
 
-use RegRev\CharType\Digit;
+use RegRev\Metacharacter\CharType\Unknown;
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class DigitTest extends \PHPUnit_Framework_TestCase
+class UnknownTest extends \PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $this->number = new Digit();
+        $this->unknown = new Unknown();
     }
 
-    public function testGenerate()
+    public function testGeneration()
     {
-        $this->assertTrue(is_numeric($this->number->generate()));
+        $pattern = "a";
+        $this->unknown->isValid($pattern);
+
+        $this->assertEquals($pattern, $this->unknown->generate());
     }
 }

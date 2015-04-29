@@ -8,20 +8,21 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\CharType;
+namespace RegRev\Metacharacter\Quantifier;
+
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
- * Class Number
- *
- * @package RevReg\Char
+ * Class ZeroOrOne,
+ * handles zero or one condition.
  */
-class Digit extends CharType
+class ZeroOrOne extends CharacterHandler
 {
     /**
      * {@inheritdoc}
      */
     public function generate()
     {
-        return rand(0, 9);
+        return null;
     }
 }
