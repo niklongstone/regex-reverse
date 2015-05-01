@@ -53,12 +53,7 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
         return array(
             array('a{1,3}'),
             array('\d'),
-            array('\d*'),
-            array('\D'),
-            array('\w'),
-            array('\w*'),
-            array('\W'),
-            array('\W*'),
+            array('\d*\D\w\W\W*'),
             array('\h\S\s*\s'),
             array('(\d)'),
             array('\w+'),
@@ -68,7 +63,10 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
             array('\(\d{3}\)\s\d{7}'),
             array('\w+@\w+\.\D{2,3}'),
             array('13[0-9][a-z]'),
-            array('13(test)(test2)[0-9][a-z]')
+            array('13(t(t)est)(test2)[0-9][a-z]'),
+            array('((hello world))'),
+            array('([)(])'),
+            array('([)])')
         );
     }
 }

@@ -50,7 +50,7 @@ class Configuration
             //subpattern
             array(
                 'type' => 'GroupType\Subpattern',
-                'pattern' => array('/^\([^\)]*\)/')
+                'pattern' => array('/^(\(((?>[^()]+)|(?-2))*\))/')
             ),
             //range
             array(
