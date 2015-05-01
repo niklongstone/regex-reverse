@@ -10,14 +10,29 @@
 
 namespace RegRev\Metacharacter\Range;
 
-use RegRev\Metacharacter\GroupType\Subpattern;
+use RegRev\Metacharacter\CharacterHandler;
 
 /**
  * Class Range,
  * handles the range match.
  */
-class Range extends Subpattern
+class Range extends CharacterHandler
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function isValid($string)
+    {
+            foreach ($this->getPatterns() as $pattern) {
+            if (preg_match($pattern, $string, $match)) {
+                $this->setMatch($match[0]);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /**
      * {@inheritdoc}

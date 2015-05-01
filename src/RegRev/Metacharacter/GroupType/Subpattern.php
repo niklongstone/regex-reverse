@@ -19,13 +19,17 @@ use RegRev\RegRev;
  */
 class Subpattern extends CharacterHandler
 {
+    const SQUARE_BRACKETS_PATTERN = '/(^\(.*\))/';
     /**
      * {@inheritdoc}
      */
     public function isValid($string)
     {
-        foreach ($this->getPatterns() as $char) {
-            if (preg_match($char, $string, $match)) {
+        foreach ($this->getPatterns() as $pattern) {
+            if (preg_match('/\[\)/', $string, $match)) {
+                $pattern = Subpattern::SQUARE_BRACKETS_PATTERN;
+            }
+            if (preg_match($pattern, $string, $match)) {
                 $this->setMatch($match[0]);
 
                 return true;
