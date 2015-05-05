@@ -25,7 +25,7 @@ class RegRev
      */
     static public function generate($regExp)
     {
-        self::setUp();
+        self::bootstrap();
         self::$typesFound = array();
         while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
@@ -43,17 +43,27 @@ class RegRev
     }
 
     /**
-     * Setup the configuration.
+     * Configures with default values,
+     * if custom values are not present.
      */
-    static private function setUp()
+    static private function bootstrap()
     {
-        self::$expressions = new ExpressionContainer();
-        $configuration = new Configuration();
-        $parameters = $configuration->getConfig();
-        foreach ($parameters as $param) {
-            $charType = self::buildCharType($param);
-            self::$expressions->set($charType);
+        if (self::$expressions === null) {
+            $configuration = new Configuration();
+            $parameters = $configuration->getConfig();
+            self::$expressions = $configuration->setUp($parameters);
         }
+    }
+
+    /**
+     * SetUp a custom configuration
+     *
+     * @param array $parameters
+     */
+    static public function setUp($parameters)
+    {
+        $configuration = new Configuration();
+        self::$expressions = $configuration->setUp($parameters);
     }
 
     static private function outPut()
@@ -65,24 +75,5 @@ class RegRev
         }
 
         return $typeFound->getResult();
-    }
-
-    static private function buildCharType($param)
-    {
-        $charTypeClass = 'RegRev\\Metacharacter\\' .  $param['type'];
-        $charType = new $charTypeClass;
-        if (array_key_exists('chars', $param)) {
-            $charType->setChars($param['chars']);
-        }
-        if (array_key_exists('pattern', $param)) {
-            foreach ($param['pattern'] as $pat) {
-                $charType->setPattern($pat);
-            }
-        }
-        if (array_key_exists('returnValue', $param)) {
-            $charType->setReturnValue($param['returnValue']);
-        }
-
-        return $charType;
     }
 }

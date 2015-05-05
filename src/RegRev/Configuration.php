@@ -133,4 +133,37 @@ class Configuration
     {
         $this->config = $config;
     }
+
+    /**
+     * Setup the configuration.
+     */
+    public function setUp($parameters)
+    {
+        $expressions = new ExpressionContainer();
+        foreach ($parameters as $param) {
+            $charType = $this->buildCharType($param);
+            $expressions->set($charType);
+        }
+
+        return $expressions;
+    }
+
+    private function buildCharType($param)
+    {
+        $charTypeClass = 'RegRev\\Metacharacter\\' .  $param['type'];
+        $charType = new $charTypeClass;
+        if (array_key_exists('chars', $param)) {
+            $charType->setChars($param['chars']);
+        }
+        if (array_key_exists('pattern', $param)) {
+            foreach ($param['pattern'] as $pat) {
+                $charType->setPattern($pat);
+            }
+        }
+        if (array_key_exists('returnValue', $param)) {
+            $charType->setReturnValue($param['returnValue']);
+        }
+
+        return $charType;
+    }
 }
