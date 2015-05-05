@@ -61,7 +61,7 @@ abstract class CharacterHandler
     /**
      * Gets a the meta char
      *
-     * @return string
+     * @return array
      */
     public function getPatterns()
     {
@@ -79,7 +79,7 @@ abstract class CharacterHandler
    /**
      * @param string $match
      *
-     * @return string mixed
+     * @return string|null
      */
     public function setMatch($match)
     {

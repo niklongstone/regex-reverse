@@ -10,10 +10,30 @@
 
 namespace RegRev\Test;
 
+use RegRev\Configuration;
 use RegRev\RegRev;
 
 class RegRevTest extends \PHPUnit_Framework_TestCase
 {
+    public function testCustomConfiguration()
+    {
+        $customPattern = '\x';
+        $config =  array(
+                        array(
+                            'type' => 'CharType\\CharType',
+                            'chars' => '0123456789',
+                            'pattern' => array($customPattern)
+                        ),
+                    array(
+                        'type' => 'CharType\Unknown',
+                        )
+                    );
+        RegRev::setUp($config);
+        $result = RegRev::generate($customPattern);
+
+        $this->assertTrue(is_numeric($result));
+        $this->resetConfig();
+    }
 
     public function testSupportedRegex()
     {
@@ -68,5 +88,12 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
             array('([)(])'),
             array('([)])')
         );
+    }
+
+    private function resetConfig()
+    {
+        $configuration = new Configuration();
+        $parameters = $configuration->getConfig();
+        RegRev::setUp($parameters);
     }
 }

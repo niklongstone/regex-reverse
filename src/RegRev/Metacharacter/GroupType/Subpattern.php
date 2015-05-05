@@ -40,7 +40,7 @@ class Subpattern extends CharacterHandler
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function generate()
     {

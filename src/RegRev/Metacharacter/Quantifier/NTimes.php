@@ -68,7 +68,7 @@ class NTimes extends OneOrMore
      *
      * @param integer $max
      */
-    public function setMax($max = null)
+    public function setMax($max)
     {
         $this->max = $max;
     }
