@@ -23,92 +23,88 @@ class Configuration
     public function __construct()
     {
         $this->config = array(
-            //digit
             array(
+                'name' => 'Digit',
                 'type' => 'CharType\\CharType',
                 'chars' => '0123456789',
                 'pattern' => array('\d')
             ),
-            //non digit
             array(
+                'name' => 'Non Digit',
                 'type' => 'CharType\\CharType',
                 'chars' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
                 'pattern' => array('\D')
             ),
-            //alphanumeric
             array(
+                'name' => 'Alphanumeric',
                 'type' => 'CharType\\CharType',
                 'chars' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY',
                 'pattern' => array('\w','\S','.')
             ),
-            //non alphanumeric
             array(
+                'name' => 'Non Alphanumeric',
                 'type' => 'CharType\\CharType',
                 'chars' => './\\()"\':,.;<>~!@#$%^&*|+=[]{}`~?-',
                 'pattern' => array('\W')
             ),
-            //subpattern
             array(
+                'name' => 'Subpattern',
                 'type' => 'GroupType\Subpattern',
                 'pattern' => array('/^(\(((?>[^()]+)|(?-2))*\))/')
             ),
-            //range
             array(
+                'name' => 'Range',
                 'type' => 'Range\Range',
                 'pattern' => array('/^\[[^\]]*\]/')
             ),
-            //zero or more
             array(
                 'type' => 'Quantifier\ZeroOrMore',
                 'pattern' => array('*')
             ),
-            //one or more
             array(
                 'type' => 'Quantifier\OneOrMore',
                 'pattern' => array('+')
             ),
-            //zero or one
             array(
                 'type' => 'Quantifier\ZeroOrOne',
                 'pattern' => array('?')
             ),
-            //n times
             array(
                 'type' => 'Quantifier\NTimes',
                 'pattern' => array('/^\{(\d*),?(\d*)?\}/')
             ),
-            //blank space
             array(
+                'name' => 'Blank space',
                 'type' => 'CharType\Generic',
                 'pattern' => array('\h','\s'),
                 'returnValue' => ' '
             ),
-            //escaped dot
             array(
+                'name' => 'Escaped dot',
                 'type' => 'CharType\Generic',
                 'pattern' => array('\.'),
                 'returnValue' => '.'
             ),
-            //left round bracket
             array(
+                'name' => 'Left Round bracket (',
                 'type' => 'CharType\Generic',
                 'pattern' => array('\('),
                 'returnValue' => '('
             ),
-            //right round bracket
             array(
+                'name' => 'Right Round bracket )',
                 'type' => 'CharType\Generic',
                 'pattern' => array('\)'),
                 'returnValue' => ')'
             ),
-            //escaped slash
             array(
+                'name' => 'Escaped Slash',
                 'type' => 'CharType\Generic',
                 'pattern' => array('\/'),
                 'returnValue' => '/'
             ),
-            //unknown charachter
             array(
+                'name' => 'Character Unknown',
                 'type' => 'CharType\Unknown',
             ),
         );

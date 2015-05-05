@@ -19,6 +19,7 @@ abstract class CharacterHandler
     private $match;
     private $successor;
     private $previous;
+    private $name = null;
 
     /**
      * @param string $string
@@ -45,7 +46,23 @@ abstract class CharacterHandler
      */
     public function getName()
     {
+        if ($this->name) {
+            return $this->name;
+        }
+
         return get_class($this);
+    }
+
+    /**
+     * Sets a name for debug the class
+     *
+     * @param string
+     *
+     * @return string
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**

@@ -9,6 +9,7 @@
  */
 
 namespace RegRev;
+use RegRev\Exception\RegExpNotValidException;
 
 /**
  * Class RevReg
@@ -19,17 +20,24 @@ class RegRev
     private static $expressions;
 
     /**
-     * @param string $regExp
+     * Generates the regular expression result.
      *
-     * @return null|string
+     * @param $regExp
+     *
+     * @return mixed
+     * @throws Exception\RegExpNotValidException
      */
     static public function generate($regExp)
     {
+        if (@preg_match('/'.$regExp.'/', '') === false) {
+            throw new RegExpNotValidException($regExp);
+        }
         self::setUp();
         self::$typesFound = array();
         while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
                 if ($type->isValid($regExp)) {
+                    Debug::setMessage($type->getName() . ' ' . $type->getMatch());
                     self::$typesFound[] = clone $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
@@ -67,22 +75,39 @@ class RegRev
         return $typeFound->getResult();
     }
 
+    /**
+     * Returns the classes name,
+     * used for debug.
+     *
+     * @return array
+     */
+    static public function debug()
+    {
+        return Debug::getMessages();
+    }
+
     static private function buildCharType($param)
     {
         $charTypeClass = 'RegRev\\Metacharacter\\' .  $param['type'];
         $charType = new $charTypeClass;
-        if (array_key_exists('chars', $param)) {
-            $charType->setChars($param['chars']);
-        }
+        self::paramSetBuilder($charType, 'chars', $param);
+        self::paramSetBuilder($charType, 'returnValue', $param);
+        self::paramSetBuilder($charType, 'name', $param);
         if (array_key_exists('pattern', $param)) {
             foreach ($param['pattern'] as $pat) {
                 $charType->setPattern($pat);
             }
         }
-        if (array_key_exists('returnValue', $param)) {
-            $charType->setReturnValue($param['returnValue']);
-        }
 
         return $charType;
+    }
+
+    static private function paramSetBuilder($type, $key, $params)
+    {
+        if (array_key_exists($key, $params)) {
+            $setter = 'set' .  ucfirst($key);
+            $type->$setter($params[$key]);
+        }
+
     }
 }

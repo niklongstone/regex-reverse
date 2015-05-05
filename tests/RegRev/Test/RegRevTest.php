@@ -10,6 +10,7 @@
 
 namespace RegRev\Test;
 
+use RegRev\Debug;
 use RegRev\RegRev;
 
 class RegRevTest extends \PHPUnit_Framework_TestCase
@@ -23,12 +24,31 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_numeric($result));
     }
 
+    /**
+     * @expectedException RegRev\Exception\RegExpNotValidException
+     */
+    public function testNotValidRegex()
+    {
+        $string = '/\d/';
+        RegRev::generate($string);
+    }
+
     public function testNotSupportedRegex()
     {
         $string = '#';
         $result = RegRev::generate($string);
 
         $this->assertEquals($string, $result);
+    }
+
+    public function testDebug()
+    {
+        Debug::clear();
+        $string = '#';
+        RegRev::generate($string);
+        $debug = RegRev::debug();
+
+        $this->assertContains('Unknown', $debug[0]);
     }
 
     /**
