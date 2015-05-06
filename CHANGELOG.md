@@ -1,5 +1,9 @@
 # Changelog
 
+0.3.0 / 2015-05-06
+=================
+  * Add debug feature
+  
 0.2.0 / 2015-05-05
 =================
   * Add configuration feature
