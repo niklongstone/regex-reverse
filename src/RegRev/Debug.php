@@ -16,7 +16,7 @@ namespace RegRev;
 class Debug
 {
     /** @var  array */
-    private static $messages;
+    private static $messages = array();
 
     /**
      * @param $message

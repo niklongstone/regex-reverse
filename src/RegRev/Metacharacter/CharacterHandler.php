@@ -46,7 +46,7 @@ abstract class CharacterHandler
      */
     public function getName()
     {
-        if ($this->name) {
+        if ($this->name !== null) {
             return $this->name;
         }
 
