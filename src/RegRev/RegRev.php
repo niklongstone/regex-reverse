@@ -9,6 +9,7 @@
  */
 
 namespace RegRev;
+use RegRev\Exception\RegExpNotValidException;
 
 /**
  * Class RevReg
@@ -19,17 +20,24 @@ class RegRev
     private static $expressions;
 
     /**
-     * @param string $regExp
+     * Generates the regular expression result.
      *
-     * @return null|string
+     * @param $regExp
+     *
+     * @return mixed
+     * @throws Exception\RegExpNotValidException
      */
     static public function generate($regExp)
     {
+        if (@preg_match('/'.$regExp.'/', '') === false) {
+            throw new RegExpNotValidException($regExp);
+        }
         self::bootstrap();
         self::$typesFound = array();
         while (strlen($regExp) > 0) {
             foreach (self::$expressions as $type) {
                 if ($type->isValid($regExp)) {
+                    Debug::setMessage($type->getName() . ' ' . $type->getMatch());
                     self::$typesFound[] = clone $type;
                     $lengthOfMatch = strlen($type->getMatch());
                     $regExp = substr($regExp, $lengthOfMatch);
@@ -75,5 +83,15 @@ class RegRev
         }
 
         return $typeFound->getResult();
+    }
+
+    /**
+     * Returns debug messages.
+     *
+     * @return array
+     */
+    static public function debug()
+    {
+        return Debug::getMessages();
     }
 }
