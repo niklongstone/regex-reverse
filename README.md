@@ -69,6 +69,9 @@ echo RegRev::generate('\d'); //ouput a random number
 |`SE[1-9]{1}\d{1}\s[A-Z]{2}\d{2}`| SE27 GU35               | london SE post code    |
 | `organi[sz]e`                  | organise or organize    | US or UK spelling      |
 
+## Other features
+ - debug: `RegRev::debug()` will return an array of messages
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
