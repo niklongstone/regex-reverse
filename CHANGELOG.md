@@ -1,5 +1,11 @@
 # Changelog
 
+0.4.0 / 2015-06-16
+=================
+  * Add alternation
+  * Add not in range feature
+  * Fix minor bugs
+
 0.3.0 / 2015-05-06
 =================
   * Add debug feature

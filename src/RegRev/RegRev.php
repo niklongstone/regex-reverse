@@ -16,13 +16,16 @@ use RegRev\Exception\RegExpNotValidException;
  */
 class RegRev
 {
+    /** @var array  */
     private static $typesFound = array();
+
+    /** @var  ExpressionContainer */
     private static $expressions;
 
     /**
      * Generates the regular expression result.
      *
-     * @param $regExp
+     * @param string $regExp
      *
      * @return mixed
      * @throws Exception\RegExpNotValidException

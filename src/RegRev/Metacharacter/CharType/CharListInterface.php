@@ -11,7 +11,7 @@
 namespace RegRev\Metacharacter\CharType;
 
 /**
- * Defines an interface for a list of characters.
+ * Defines an interface to handle list of characters.
  */
 interface CharListInterface
 {

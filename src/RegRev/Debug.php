@@ -19,7 +19,9 @@ class Debug
     private static $messages = array();
 
     /**
-     * @param $message
+     * Sets the debug messages.
+     *
+     * @param string $message
      */
     static public function setMessage($message)
     {
@@ -27,6 +29,8 @@ class Debug
     }
 
     /**
+     * Gets the debug messages.
+     *
      * @return array
      */
     static public function getMessages()
@@ -35,7 +39,7 @@ class Debug
     }
 
     /**
-     * @return array
+     * Clear the debug messages.
      */
     static public function clear()
     {

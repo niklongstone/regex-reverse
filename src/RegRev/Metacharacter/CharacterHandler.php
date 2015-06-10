@@ -56,9 +56,7 @@ abstract class CharacterHandler
     /**
      * Sets a name for debug the class
      *
-     * @param string
-     *
-     * @return string
+     * @param string $name
      */
     public function setName($name)
     {
@@ -104,11 +102,15 @@ abstract class CharacterHandler
     }
 
     /**
+     * Handles the generation process.
+     *
      * @return string
      */
     abstract public function generate();
 
     /**
+     * Sets chain successor.
+     *
      * @param CharacterHandler $handler
      */
     final public function setSuccessor(CharacterHandler $handler)
@@ -118,6 +120,8 @@ abstract class CharacterHandler
     }
 
     /**
+     * Set previous handler.
+     *
      * @param CharacterHandler $handler
      */
     final public function setPrevious(CharacterHandler $handler)
@@ -126,6 +130,8 @@ abstract class CharacterHandler
     }
 
     /**
+     * Gets previous handler.
+     *
      * @return CharacterHandler
      */
     final public function getPrevious()
@@ -134,6 +140,8 @@ abstract class CharacterHandler
     }
 
     /**
+     * Gets the result.
+     *
      * @param string $result
      *
      * @return string

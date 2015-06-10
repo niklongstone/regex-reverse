@@ -36,7 +36,7 @@ class OneOrMore extends CharacterHandler
     protected function generateQuanitity($quantity)
     {
         $result = null;
-        for($i = 0; $i < $quantity; $i ++) {
+        for ($i = 0; $i < $quantity; $i ++) {
             if ($this->getPrevious()) {
                 get_class($this->getPrevious());
                 $result .= $this->getPrevious()->generate();

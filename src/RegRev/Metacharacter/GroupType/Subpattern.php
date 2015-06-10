@@ -15,11 +15,12 @@ use RegRev\RegRev;
 
 /**
  * Class Subpattern,
- * handles the subpattern match.
+ * handles the sub-pattern match.
  */
 class Subpattern extends CharacterHandler
 {
     const SQUARE_BRACKETS_PATTERN = '/(^\(.*\))/';
+
     /**
      * {@inheritdoc}
      */

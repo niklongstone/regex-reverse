@@ -11,7 +11,8 @@
 namespace RegRev;
 
 /**
- * Class ExpressionContainer
+ * Class ExpressionContainer,
+ * handles the available regular expressions.
  */
 class ExpressionContainer implements \Iterator
 {
@@ -19,33 +20,67 @@ class ExpressionContainer implements \Iterator
 
     private $expressions = array();
 
+    /**
+     * Constructor.
+     */
     public function __construct()
     {
         $this->position = 0;
     }
 
+    /**
+     * Sets the expression.
+     *
+     * @param mixed $expression
+     */
     public function set($expression)
     {
         $this->expressions[] = $expression;
     }
 
-    public function rewind() {
+    /**
+     * Rewinds the container index.
+     */
+    public function rewind()
+    {
         $this->position = 0;
     }
 
-    public function current() {
+    /**
+     * Gets the current element.
+     *
+     * @return mixed
+     */
+    public function current()
+    {
         return $this->expressions[$this->position];
     }
 
-    public function key() {
+    /**
+     * Returns the current key.
+     *
+     * @return int
+     */
+    public function key()
+    {
         return $this->position;
     }
 
-    public function next() {
+    /**
+     * Increases the current index.
+     */
+    public function next()
+    {
         ++$this->position;
     }
 
-    public function valid() {
+    /**
+     * Checks if the expression is set.
+     *
+     * @return bool
+     */
+    public function valid()
+    {
         return isset($this->expressions[$this->position]);
     }
 }

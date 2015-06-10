@@ -1,9 +1,8 @@
 {
     "name": "niklongstone/regex-reverse",
-    "description": "Regular Expression reverter, generates a string that match the provided regular expression",
+    "description": "Regular Expression reverter, generates a string from a provided regular expression",
     "keywords": [
-        "regular expression",
-        "reverse", "test", "data", "regex", "match"
+        "regular expression", "generation", "test", "data", "regex", "preg", "PCRE"
     ],
     "homepage": "https://github.com/niklongstone/reverse-regex",
     "type": "library",

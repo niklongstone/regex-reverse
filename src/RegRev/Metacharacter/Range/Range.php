@@ -11,19 +11,23 @@
 namespace RegRev\Metacharacter\Range;
 
 use RegRev\Metacharacter\CharacterHandler;
+use RegRev\Metacharacter\CharType\CharListInterface;
 
 /**
  * Class Range,
  * handles the range match.
  */
-class Range extends CharacterHandler
+class Range extends CharacterHandler implements CharListInterface
 {
+    /** @var  string */
+    private $chars;
+
     /**
      * {@inheritdoc}
      */
     public function isValid($string)
     {
-            foreach ($this->getPatterns() as $pattern) {
+        foreach ($this->getPatterns() as $pattern) {
             if (preg_match($pattern, $string, $match)) {
                 $this->setMatch($match[0]);
 
@@ -41,25 +45,115 @@ class Range extends CharacterHandler
     {
         $match = substr($this->getMatch(), 1, -1);
         $resultRange = '';
-        $matchLength = strlen($match);
-        for ($i = 0; $i < $matchLength; $i++) {
-            if ($match[$i] != '-') {
-                $resultRange.= $match[$i];
-            } else {
-                $rangeStart = $match[$i-1];
-                $resultRange = substr($resultRange, 0, -1);
-                $rangeEnd = $match[$i+1];
-                $resultRange.= $this->createRange($rangeStart, $rangeEnd);
-                $i++;
-            }
+        $isNegation = $this->isNegation($match);
+        $ranges = $this->getRanges($match);
+        $resultRange .= $this->createRange($ranges);
+        $resultRange .= $this->getSingleChars($match, $ranges);
+        if ($isNegation) {
+            $resultRange = $this->generateNegation($resultRange);
         }
-        $randomIndex = rand(0, strlen($resultRange) -1);
+        $randomIndex = rand(0, strlen($resultRange) - 1);
 
         return $resultRange[$randomIndex];
     }
 
-    private function createRange($rangeStart, $rangeEnd)
+    /**
+     * Checks if the range is a negation (ie:[^..]).
+     *
+     * @param string $match
+     *
+     * @return bool
+     */
+    private function isNegation($match)
     {
-        return implode('', range($rangeStart, $rangeEnd));
+        return $match[0] == '^';
+    }
+
+    /**
+     * Gets single character list from the range (ie:[a4h-]).
+     *
+     * @param string $match
+     * @param array  $ranges
+     *
+     * @return string|null
+     */
+    private function getSingleChars($match, $ranges)
+    {
+        foreach ($ranges as $range) {
+            $match = str_replace($range, '', $match);
+        }
+        $match = preg_replace('/((\\\\)(?:.))/', '', $match);
+
+        return $match;
+    }
+
+    /**
+     * Gets characters range (ie:[a-f0-9]).
+     *
+     * @param string $match
+     *
+     * @return array
+     */
+    private function getRanges($match)
+    {
+        preg_match_all('/.-[^\\\]/', $match, $ranges);
+
+        return $ranges[0];
+    }
+
+    /**
+     * Removes the negated character from the available chars list.
+     *
+     * @param string $match
+     *
+     * @return string
+     */
+    private function generateNegation($match)
+    {
+        $match = str_split($match);
+        $chars = str_split($this->getChars());
+        foreach ($match as $negVal) {
+            if (($key = array_search($negVal, $chars)) !== false) {
+                if ($negVal == '\\') {
+                    continue;
+                }
+                unset($chars[$key]);
+            }
+        }
+
+        return implode('', $chars);
+    }
+
+    /**
+     * Creates the characters ranges.
+     *
+     * @param array $ranges
+     *
+     * @return string
+     */
+    private function createRange($ranges)
+    {
+        $rangeOfString = '';
+        foreach ($ranges as $range) {
+           $rangeOfString .= implode('', range($range[0], $range[2]));
+        }
+
+        return $rangeOfString;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setChars($chars)
+    {
+        $this->chars = $chars;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getChars()
+    {
+        return $this->chars;
     }
 }

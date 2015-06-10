@@ -55,6 +55,7 @@ class Configuration
             array(
                 'name' => 'Range',
                 'type' => 'Range\Range',
+                'chars' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY./\\()"\':,.;<>~!@#$%^&*|+=[]{}`~?-',
                 'pattern' => array('/^\[[^\]]*\]/')
             ),
             array(
@@ -74,10 +75,30 @@ class Configuration
                 'pattern' => array('/^\{(\d*),?(\d*)?\}/')
             ),
             array(
+                'name' => 'Alternation',
+                'type' => 'Range\Alternation',
+                'pattern' => array('|')
+            ),
+            array(
                 'name' => 'Blank space',
                 'type' => 'CharType\Generic',
                 'pattern' => array('\h','\s'),
                 'returnValue' => ' '
+            ),
+            /**
+             * Ignored
+             */
+            array(
+                'name' => 'Start',
+                'type' => 'CharType\Generic',
+                'pattern' => array('^'),
+                'returnValue' => ''
+            ),
+            array(
+                'name' => 'End',
+                'type' => 'CharType\Generic',
+                'pattern' => array('$'),
+                'returnValue' => ''
             ),
             /**
              * Escaped meta-character
@@ -155,6 +176,12 @@ class Configuration
                 'returnValue' => '+'
             ),
             array(
+                'name' => 'Escaped minus',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\-'),
+                'returnValue' => '-'
+            ),
+            array(
                 'name' => 'Escaped left curly bracket',
                 'type' => 'CharType\Generic',
                 'pattern' => array('\{'),
@@ -186,15 +213,19 @@ class Configuration
     /**
      * Sets the configuration.
      *
-     * @param $config
+     * @param array $config
      */
-    public function setConfig(array $config)
+    public function setConfig($config)
     {
         $this->config = $config;
     }
 
     /**
      * Setup the configuration.
+     *
+     * @param array $parameters
+     *
+     * @return ExpressionContainer
      */
     public function setUp($parameters)
     {

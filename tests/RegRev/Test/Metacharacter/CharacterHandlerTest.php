@@ -14,9 +14,8 @@ use RegRev\Metacharacter\CharacterHandler;
 
 class TestCharacterHandler extends CharacterHandler
 {
-    public function generate(){ return null;}
+    public function generate(){ return;}
 }
-
 
 /**
  * Class Number

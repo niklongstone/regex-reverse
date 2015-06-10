@@ -8,21 +8,25 @@
  * please view the LICENSE file that was distributed with this source code.
  */
 
-namespace RegRev\Metacharacter\Quantifier;
+namespace RegRev\Metacharacter\Range;
 
 use RegRev\Metacharacter\CharacterHandler;
+use RegRev\Metacharacter\CharType\Unknown;
 
 /**
- * Class ZeroOrOne,
- * handles zero or one condition.
+ * Class OneOrMore,
+ * handles one or more condition.
  */
-class ZeroOrOne extends CharacterHandler
+class Alternation extends CharacterHandler
 {
     /**
      * {@inheritdoc}
      */
     public function generate()
     {
+        $nullType = new Unknown();
+        $this->setSuccessor($nullType);
+
         return;
     }
 }

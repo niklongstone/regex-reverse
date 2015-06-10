@@ -91,6 +91,8 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
     public function regExData()
     {
         return array(
+            array('&quot;([^&quot;](\\.|[^\\&quot;]*)*)&quot'),
+            array('[-a-zA-Z0-9]'),
             array('a{1,3}'),
             array('\d'),
             array('\d*\D\w\W\W*'),
@@ -107,7 +109,21 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
             array('((hello world))'),
             array('([)(])'),
             array('([)])'),
-            array('\(\[\)\]\)\?\.\*\+\{\}')
+            array('\(\[\)\]\)\?\.\*\+\{\}'),
+            array('a|b|c|d'),
+            array('^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$'),
+            array('^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$'),
+            array('^(http|https|ftp):\/\/[-a-zA-Z0-9\.]+\.[a-zA-Z]{2,3}(:[0-9]*)?\/?(\w)*$'),
+            array('(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)'),
+            array('^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$'),
+            array('(^(\+?\-? *[0-9]+)([,0-9 ]*)([0-9 ])*$)|(^ *$)'),
+            array('[^01234567abcdAbcd]'),
+            array('^ISBN\s([-0-9xX ]{13})([0-9]+[- ]){3}[0-9]*[xX0-9]$'),
+            array('^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$'),
+            array('^\(\d{3}\) ?\d{3}( |-)?\d{4}|^\d{3}( |-)?\d{3}( |-)?\d{4}'),
+            array('[-\/\.]'),
+            array('&lt;[^&gt;]*\n?.*=(&quot;|\')?(.*\.jpg)(&quot;|\')?.*\n?[^&lt;]*&gt'),
+            array('<[a-zA-Z][^>]*\son\w+=(\w+|\'[^\']*\'|"[^"]*")[^>]*>')
         );
     }
 

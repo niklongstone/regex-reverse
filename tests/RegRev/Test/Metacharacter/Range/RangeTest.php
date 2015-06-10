@@ -23,6 +23,8 @@ class RangeTest extends \PHPUnit_Framework_TestCase
     {
         $this->subpattern = new Range();
         $this->subpattern->setPattern('/^\[[^\]]*\]/');
+        $this->chars = '01ab';
+        $this->subpattern->setChars($this->chars);
     }
 
     /**
@@ -49,11 +51,16 @@ class RangeTest extends \PHPUnit_Framework_TestCase
     public function validData()
     {
         return array(
+            array('[a-cA-C0-2_\-\.]', array('a', 'b', 'c', 'A', 'B', 'C', '0', '1', '2', '_', '-', '.')),
+        /*
             array('[0]', array('0')),
             array('[02]', array('0','2')),
-            array('[1-2]', array('1','2','3')),
+            array('[a-c8-9]', array('a','b','c','8','9')),
+            array('[1-2a]', array('1','2','a')),
             array('[a-c]', array('a','b','c')),
-            array('[a-c8-9]', array('a','b','c','8','9'))
+            array('[0-2-]', array('0','1','2','-')),
+            array('[\.-]', array('.','-')),
+            array('[^a-b0]', array('1'))*/
         );
     }
 }

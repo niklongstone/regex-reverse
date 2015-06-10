@@ -7,51 +7,58 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/niklongstone/regex-reverse.svg?style=flat-square)](https://scrutinizer-ci.com/g/niklongstone/regex-reverse)
 
 
-Regular expression reverter, given a regular expression will output a string that will match it
+Regular expression reverter, generates a string from the given regular expression.
 
 ## Install
 
-Via Composer
+Via [Composer](https://getcomposer.org/download/)
 
 ``` bash
-$ composer require niklongstone/regex-reverse
+$ composer require niklongstone/regex-reverse:'^0.4.0'
 ```
 
 ## Usage
 
 ``` php
+<?php
 require ('regex-reverse/vendor/autoload.php');
 use RegRev\RegRev;
 
 echo RegRev::generate('\d'); //ouput a random number
 ```
+For a list of useful regular expression, please visit: [Awesome PCRE](https://github.com/niklongstone/awesome-regular-expression)
 
 ## Supported expressions
+
+#### Character classes
 
 | Expression | Description | Result                  |
 |------------|-------------|-------------------------|
 |    \d      |    digit    |      a number           |
 |    \D      |  non digit  |    an alpha char        |
 |    \w      |    word     | a alphanumeric char     |
-|    \W      |    word     | a non alphanumeric char |
+|    \W      |  non word   | a non alphanumeric char |
 |    \s      |    space    |    a blank space        |
-|    \S      |    space    |    a non blank space    |
+|    \S      | non space   |    a non blank space    |
 
-## Conditional and subgroup
+#### Conditional and subgroup
 | Expression    | Description      | Example   |  Result     |
 |---------------|------------------|-----------|-------------|
 |    ()         |  subgroup        | (\d\w)+@  | 97a987Ss@   |
+|    (a|b)      |  alternation     |  (a|i)nt  |    int      |
 |    *          |  zero or more    |   \d*     |  123502     |
 |    +          |  one or more     |   \d+     |   32133     |
 |    ?          |  zero or one     |   \d?     |     3       |
 |{n} {n,} {n,m} |from n to m times | \w{1,3}   |    np       |
 
-## Ranges
+#### Ranges
 | Expression       | Description      |   Result     |
 |------------------|------------------|--------------|
 |    [0-9]         |  range 0 to 9    |      7       |
 |    [a-d]         |  range a to b    |      b       |
 |    [0-9c-f]      | range 0-9 or c-f |      d       |
+|    [ab5\.]       | chars in list    |      b       |
+|    [^ab5\.]      | chars not in list|      8       |
 
 ##Examples
 
@@ -68,6 +75,7 @@ echo RegRev::generate('\d'); //ouput a random number
 |`SE[1-9]{1}\d{1}\s[A-Z]{2}\d{2}`| SE27 GU35               | london SE post code    |
 |`SE[1-9]{1}\d{1}\s[A-Z]{2}\d{2}`| SE27 GU35               | london SE post code    |
 | `organi[sz]e`                  | organise or organize    | US or UK spelling      |
+
 
 ## Other features
  - debug: `RegRev::debug()` will return an array of messages
