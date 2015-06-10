@@ -79,6 +79,9 @@ class Configuration
                 'pattern' => array('\h','\s'),
                 'returnValue' => ' '
             ),
+            /**
+             * Escaped meta-character
+             */
             array(
                 'name' => 'Escaped dot',
                 'type' => 'CharType\Generic',
@@ -102,6 +105,66 @@ class Configuration
                 'type' => 'CharType\Generic',
                 'pattern' => array('\/'),
                 'returnValue' => '/'
+            ),
+            array(
+                'name' => 'Escaped Dollar',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\$'),
+                'returnValue' => '$'
+            ),
+            array(
+                'name' => 'Escaped assert start',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\^'),
+                'returnValue' => '^'
+            ),
+            array(
+                'name' => 'Escaped left square bracket',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\['),
+                'returnValue' => '['
+            ),
+            array(
+                'name' => 'Escaped right square bracket',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\]'),
+                'returnValue' => ']'
+            ),
+            array(
+                'name' => 'Escaped alternative branch',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\|'),
+                'returnValue' => '|'
+            ),
+            array(
+                'name' => 'Escaped question mark',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\?'),
+                'returnValue' => '?'
+            ),
+            array(
+                'name' => 'Escaped zero or more quantifier',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\*'),
+                'returnValue' => '*'
+            ),
+            array(
+                'name' => 'Escaped one or more quantifier',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\+'),
+                'returnValue' => '+'
+            ),
+            array(
+                'name' => 'Escaped left curly bracket',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\{'),
+                'returnValue' => '{'
+            ),
+            array(
+                'name' => 'Escaped right curly bracket',
+                'type' => 'CharType\Generic',
+                'pattern' => array('\}'),
+                'returnValue' => '}'
             ),
             array(
                 'name' => 'Character Unknown',

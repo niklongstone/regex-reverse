@@ -78,7 +78,7 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
     {
         $matchedExpression = null;
         $result = RegRev::generate($expression);
-        preg_match('/(' . $expression . ')$/i', $result, $match);
+        preg_match('#' . $expression . '#', $result, $match);
         if (isset($match[0])) {
             $matchedExpression = $match[0];
         }
@@ -106,7 +106,8 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
             array('13(t(t)est)(test2)[0-9][a-z]'),
             array('((hello world))'),
             array('([)(])'),
-            array('([)])')
+            array('([)])'),
+            array('\(\[\)\]\)\?\.\*\+\{\}')
         );
     }
 
