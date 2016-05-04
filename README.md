@@ -21,7 +21,7 @@ $ composer require niklongstone/regex-reverse:'^0.4.0'
 
 ``` php
 <?php
-require ('regex-reverse/vendor/autoload.php');
+require ('vendor/autoload.php');
 use RegRev\RegRev;
 
 echo RegRev::generate('\d'); //ouput a random number
