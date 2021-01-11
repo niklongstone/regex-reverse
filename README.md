@@ -60,7 +60,7 @@ For a list of useful regular expression, please visit: [Awesome PCRE](https://gi
 |    [ab5\.]       | chars in list    |      b       |
 |    [^ab5\.]      | chars not in list|      8       |
 
-##Examples
+## Examples
 
 | Expression                     | Result                  | Description
 |--------------------------------|-------------------------|------------------------|
