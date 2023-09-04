@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\GroupType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\Range\Range;
 
 /**
@@ -17,9 +18,9 @@ use RegRev\Metacharacter\Range\Range;
  *
  * @package RevReg\Char
  */
-class RangeTest extends \PHPUnit_Framework_TestCase
+class RangeTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->subpattern = new Range();
         $this->subpattern->setPattern('/^\[[^\]]*\]/');

@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharType\Generic;
 
 /**
@@ -17,9 +18,9 @@ use RegRev\Metacharacter\CharType\Generic;
  *
  * @package RevReg\Char
  */
-class GenericTest extends \PHPUnit_Framework_TestCase
+class GenericTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->blank = new Generic();
         $this->blank->setReturnValue(' ');

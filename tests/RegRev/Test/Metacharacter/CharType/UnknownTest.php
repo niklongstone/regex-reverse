@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharType\Unknown;
 
 /**
@@ -17,9 +18,9 @@ use RegRev\Metacharacter\CharType\Unknown;
  *
  * @package RevReg\Char
  */
-class UnknownTest extends \PHPUnit_Framework_TestCase
+class UnknownTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->unknown = new Unknown();
     }

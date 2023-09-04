@@ -10,9 +10,10 @@
 
 namespace RegRev\Test\Exception;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Exception\RegExpNotValidException;
 
-class RegExpNotValidExceptionTest extends \PHPUnit_Framework_TestCase
+class RegExpNotValidExceptionTest extends TestCase
 {
     public function testException()
     {

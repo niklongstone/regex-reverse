@@ -10,11 +10,13 @@
 
 namespace RegRev\Test;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Configuration;
 use RegRev\Debug;
+use RegRev\Exception\RegExpNotValidException;
 use RegRev\RegRev;
 
-class RegRevTest extends \PHPUnit_Framework_TestCase
+class RegRevTest extends TestCase
 {
     public function testCustomConfiguration()
     {
@@ -44,11 +46,9 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_numeric($result));
     }
 
-    /**
-     * @expectedException RegRev\Exception\RegExpNotValidException
-     */
     public function testNotValidRegex()
     {
+        $this->expectException(RegExpNotValidException::class);
         $string = '/\d/';
         RegRev::generate($string);
     }
@@ -68,7 +68,7 @@ class RegRevTest extends \PHPUnit_Framework_TestCase
         RegRev::generate($string);
         $debug = RegRev::debug();
 
-        $this->assertContains('Unknown', $debug[0]);
+        $this->assertStringContainsString('Unknown', $debug[0]);
     }
 
     /**

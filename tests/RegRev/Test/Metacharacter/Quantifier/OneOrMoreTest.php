@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharType\Generic;
 use RegRev\Metacharacter\Quantifier\OneOrMore;
 
@@ -18,9 +19,9 @@ use RegRev\Metacharacter\Quantifier\OneOrMore;
  *
  * @package RevReg\Char
  */
-class OneOrMoreTest extends \PHPUnit_Framework_TestCase
+class OneOrMoreTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->regEx = new OneOrMore();
         $this->regEx->setPattern('+');

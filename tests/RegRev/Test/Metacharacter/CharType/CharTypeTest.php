@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharType\CharType;
 
 /**
@@ -17,9 +18,9 @@ use RegRev\Metacharacter\CharType\CharType;
  *
  * @package RevReg\Char
  */
-class CharTypeTest extends \PHPUnit_Framework_TestCase
+class CharTypeTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->digit = new CharType();
         $this->digit->setChars('01');
