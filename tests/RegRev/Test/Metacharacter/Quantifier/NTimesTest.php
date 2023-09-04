@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharType\Generic;
 use RegRev\Metacharacter\Quantifier\NTimes;
 
@@ -18,9 +19,9 @@ use RegRev\Metacharacter\Quantifier\NTimes;
  *
  * @package RevReg\Char
  */
-class NTimesTest extends \PHPUnit_Framework_TestCase
+class NTimesTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->regEx = new NTimes();
         $this->regEx->setPattern('/\{(\d*),?(\d*)?\}/');

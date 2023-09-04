@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharType\Generic;
 use RegRev\Metacharacter\Quantifier\ZeroOrMore;
 
@@ -18,9 +19,9 @@ use RegRev\Metacharacter\Quantifier\ZeroOrMore;
  *
  * @package RevReg\Char
  */
-class ZeroOrMoreTest extends \PHPUnit_Framework_TestCase
+class ZeroOrMoreTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->regEx = new ZeroOrMore();
         $this->regEx->setPattern('*');
