@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\GroupType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\GroupType\Subpattern;
 
 /**
@@ -17,9 +18,9 @@ use RegRev\Metacharacter\GroupType\Subpattern;
  *
  * @package RevReg\Char
  */
-class SubpatternTest extends \PHPUnit_Framework_TestCase
+class SubpatternTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->subpattern = new Subpattern();
         $this->subpattern->setPattern('/\(.*\)/');

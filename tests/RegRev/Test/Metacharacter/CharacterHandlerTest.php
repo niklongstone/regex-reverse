@@ -10,23 +10,22 @@
 
 namespace RegRev\Test\Metacharacter;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharacterHandler;
-
-class TestCharacterHandler extends CharacterHandler
-{
-    public function generate(){ return;}
-}
 
 /**
  * Class Number
  *
  * @package RevReg\Char
  */
-class CharacterHandlerTest extends \PHPUnit_Framework_TestCase
+class CharacterHandlerTest extends TestCase
 {
     public function testisValid()
     {
-        $charTypeTest = new TestCharacterHandler();
+        $charTypeTest = new class extends CharacterHandler
+        {
+            public function generate(){ return;}
+        };
         $charTypeTest->setPattern('\d');
 
         $this->assertTrue($charTypeTest->isValid('\d'));

@@ -41,7 +41,7 @@ class ExpressionContainer implements \Iterator
     /**
      * Rewinds the container index.
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
     }
@@ -51,7 +51,7 @@ class ExpressionContainer implements \Iterator
      *
      * @return mixed
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->expressions[$this->position];
     }
@@ -61,7 +61,7 @@ class ExpressionContainer implements \Iterator
      *
      * @return int
      */
-    public function key()
+    public function key(): int
     {
         return $this->position;
     }
@@ -69,7 +69,7 @@ class ExpressionContainer implements \Iterator
     /**
      * Increases the current index.
      */
-    public function next()
+    public function next(): void
     {
         ++$this->position;
     }
@@ -79,7 +79,7 @@ class ExpressionContainer implements \Iterator
      *
      * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->expressions[$this->position]);
     }

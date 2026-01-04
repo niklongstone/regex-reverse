@@ -10,6 +10,7 @@
 
 namespace RegRev\Test\Metacharacter\CharType;
 
+use PHPUnit\Framework\TestCase;
 use RegRev\Metacharacter\CharType\Generic;
 use RegRev\Metacharacter\Quantifier\ZeroOrOne;
 
@@ -18,9 +19,9 @@ use RegRev\Metacharacter\Quantifier\ZeroOrOne;
  *
  * @package RevReg\Char
  */
-class ZeroOrOneTest extends \PHPUnit_Framework_TestCase
+class ZeroOrOneTest extends TestCase
 {
-    public function setup()
+    protected function setUp(): void
     {
         $this->regEx = new ZeroOrOne();
         $this->regEx->setPattern('?');
